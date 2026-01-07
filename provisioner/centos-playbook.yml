@@ -1,16 +1,28 @@
-- hosts: all
+- name: Initialize hosts
+  hosts: all
   tasks:
+  - name: Import RPM GPG key for EPEL
+    ansible.builtin.rpm_key:
+      state: present
+      key: https://d2lzkl7pfhq30w.cloudfront.net/pub/epel/RPM-GPG-KEY-EPEL-10
+
   - name: Add epel-release repo
-    yum:
+    ansible.builtin.yum_repository:
+      name: epel-release-repo
+      description: EPEL YUM repo
+      baseurl: https://d2lzkl7pfhq30w.cloudfront.net/pub/epel/10/Everything/x86_64/
+
+  - name: Add epel-release
+    ansible.builtin.yum:
       name: epel-release
       state: present
 
   - name: Install nginx
-    yum:
+    ansible.builtin.yum:
       name: nginx
       state: present
 
   - name: Start NGiNX
-    service:
+    ansible.builtin.service:
       name: nginx
       state: started
