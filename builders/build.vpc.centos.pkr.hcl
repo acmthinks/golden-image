@@ -34,6 +34,11 @@ variable "resource_group_id" {
   default = null
 }
 
+variable "cos_bucket" {
+  type    = string
+  default = null
+}
+
 variable "ansible_inventory_file" {
   type    = string
   default = "${env("ANSIBLE_INVENTORY_FILE")}"
