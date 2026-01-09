@@ -1,0 +1,11 @@
+# This is a variable template!!!
+# Make a file copy and rename to `variables.pkvars.hcl`
+# Replace placeholder values and save
+
+#Service ID API Key (COS credentials)
+ibm_api_key = "<ibm_cloud_cos_credentials_api_key>"
+
+resource_group_id = "<resource_group_id>"
+region = "<region>"
+subnet_id = "<subnet_id>"
+cos_bucket = "<cos_bucket_name>"

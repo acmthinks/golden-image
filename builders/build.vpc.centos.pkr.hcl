@@ -55,7 +55,6 @@ source "ibmcloud-vpc" "centos" {
   vsi_profile         = "bx2-2x8"
   vsi_interface       = "public"
   vsi_user_data_file  = ""
-  #image_name          = "GOLDEN-centos-10-amd64"
   image_name          = "packer-${local.timestamp}"
 
   communicator = "ssh"
@@ -92,12 +91,10 @@ build {
   ##############################################################################
   ## Optional: Store golden image to COS (qcow2 format)
   ##############################################################################
-  #post-processors {
-  #  post-processor "ibmcloud-export-image" {
-  #    image_export_job_name   = "image-export-job-${local.timestamp}"
-  #    storage_bucket_name     = "golden-image-bucket"
-  #    format                  = "qcow2"
-  #    export_timeout          = "12m"
-  #  }
-  #}
+  post-processors {
+    post-processor "ibmcloud-export-image" {
+      storage_bucket_name     = "${var.cos_bucket}"
+      format                  = "qcow2"
+    }
+  }
 }
