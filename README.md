@@ -14,7 +14,7 @@ Here is how it works:
 
 # Install
 
-# Clone repo
+## Clone repo
 
 ``` shell
 git clone https://github.com/acmthinks/golden-image
@@ -32,7 +32,13 @@ brew install hashicorp/tap/packer
 
 https://docs.ansible.com/projects/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-specific-operating-systems
 
+For MacOS:
+``` shell
+brew install ansible
+```
+
 ## Set environment variables
+
 These can also be stored in `.env` and sourced
 ``` shell
 export ANSIBLE_INVENTORY_FILE="provisioner/hosts"
@@ -54,11 +60,29 @@ subnet_id = "VPC_SUBNET_ID"
 cos_bucket = "BUCKET_NAME"
 ```
 
-## Run
+# Run
 Initialize Packer, validate, build.
 ``` shell
 cd /golden-image
 packer init -upgrade builders/build.vpc.centos.pkr.hcl
 packer validate -var-file=builders/variables.pkrvars.hcl builders/build.vpc.centos.pkr.hcl
 packer build -var-file=builders/variables.pkrvars.hcl builders/build.vpc.centos.pkr.hcl
+```
+# Uninstall
+1. Remove Packer
+For MacOS:
+``` shell
+brew uninstall hashicorp/tap/packer
+brew autoremove
+```
+
+2. Remove Ansible
+For MacOS:
+``` shell
+brew uninstall ansible
+```
+
+3. Delete files
+``` shell
+rm -rf golden-image
 ```
