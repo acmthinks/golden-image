@@ -50,6 +50,7 @@ brew install ansible
 
 These can also be stored in `.env` and sourced
 ``` shell
+export PACKER_GITHUB_API_TOKEN="<YOUR_GITHUB_PERSONAL_API_TOKEN>"
 export ANSIBLE_INVENTORY_FILE="provisioner/hosts"
 export ANSIBLE_HOST_KEY_CHECKING=False
 export PACKER_LOG=1
