@@ -3,7 +3,6 @@
 *.log
 .cache/
 .ansible/
-hosts
 id_rsa
 id_rsa.pub
 packerlog.txt
@@ -25,6 +24,7 @@ __pycache__/
 local-configure.yml
 vbox_host.cfg
 .env
+provisioner/hosts
 
 # OS/Editor files
 .DS_Store
