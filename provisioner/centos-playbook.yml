@@ -1,28 +1,35 @@
+###############################################################################
+## Ansible to perform the initialization of hosts, includes:
+##   1. install of EPEL package (with GPG key)
+##   2. install nginx
+##   3. start nginx
+###############################################################################
+---
 - name: Initialize hosts
   hosts: all
   tasks:
-  - name: Import RPM GPG key for EPEL
-    ansible.builtin.rpm_key:
-      state: present
-      key: https://d2lzkl7pfhq30w.cloudfront.net/pub/epel/RPM-GPG-KEY-EPEL-10
+    - name: Import RPM GPG key for EPEL
+      ansible.builtin.rpm_key:
+        state: present
+        key: https://d2lzkl7pfhq30w.cloudfront.net/pub/epel/RPM-GPG-KEY-EPEL-10
 
-  - name: Add epel-release repo
-    ansible.builtin.yum_repository:
-      name: epel-release-repo
-      description: EPEL YUM repo
-      baseurl: https://d2lzkl7pfhq30w.cloudfront.net/pub/epel/10/Everything/x86_64/
+    - name: Add epel-release repo
+      ansible.builtin.yum_repository:
+        name: epel-release-repo
+        description: EPEL YUM repo
+        baseurl: https://d2lzkl7pfhq30w.cloudfront.net/pub/epel/10/Everything/x86_64/
 
-  - name: Add epel-release
-    ansible.builtin.yum:
-      name: epel-release
-      state: present
+    - name: Add epel-release
+      ansible.builtin.yum:
+        name: epel-release
+        state: present
 
-  - name: Install nginx
-    ansible.builtin.yum:
-      name: nginx
-      state: present
+    - name: Install nginx
+      ansible.builtin.yum:
+        name: nginx
+        state: present
 
-  - name: Start NGiNX
-    ansible.builtin.service:
-      name: nginx
-      state: started
+    - name: Start NGiNX
+      ansible.builtin.service:
+        name: nginx
+        state: started

@@ -60,7 +60,8 @@ source "ibmcloud-vpc" "centos" {
   vsi_profile         = "bx2-2x8"
   vsi_interface       = "public"
   vsi_user_data_file  = ""
-  image_name          = "packer-${local.timestamp}"
+  ## image_name          = "packer-${local.timestamp}"
+  image_name = "golden-image-centos-10-${local.timestamp}"
 
   communicator = "ssh"
   ssh_username = "root"
@@ -89,17 +90,17 @@ build {
   ##############################################################################
   ## Optional: Run any additional configurations with an Ansible playbook
   ##############################################################################
-  provisioner "ansible" {
-    playbook_file = "provisioner/centos-playbook.yml"
-  }
+  #provisioner "ansible" {
+  #  playbook_file = "provisioner/centos-playbook.yml"
+  #}
 
   ##############################################################################
   ## Optional: Store golden image to COS (qcow2 format)
   ##############################################################################
-  post-processors {
-    post-processor "ibmcloud-export-image" {
-      storage_bucket_name     = "${var.cos_bucket}"
-      format                  = "qcow2"
-    }
-  }
+  #post-processors {
+  #  post-processor "ibmcloud-export-image" {
+  #    storage_bucket_name     = "${var.cos_bucket}"
+  #    format                  = "qcow2"
+  #  }
+  #}
 }

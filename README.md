@@ -1,5 +1,7 @@
 Create a "golden image" for virtualized workloads in IBM Cloud. Based off of the [IBM Cloud Plugin for Packer](https://github.com/IBM/packer-plugin-ibmcloud)
-This repo supports running Packer locally to provision a stock IBM Cloud Catalog image into your own VPC. The outcome will be a Custom Image and a the image being stored in a COS bucket in your account that can be provisioned as a VSI in VPC or imported into OpenShift Virtualization.
+This repo supports running Packer locally to provision a stock IBM Cloud Catalog image into your own VPC. The outcome will be a Custom Image and that image being stored in a COS bucket in your account that can be provisioned as a VSI in VPC or imported into OpenShift Virtualization.
+
+This "golden image" generator requires IBM Cloud resources be setup and configured to support the Packer plugin for IBM Cloud.
 
 This example pulls the IBM Cloud stock image for Centos, installs an EPEL package (yum), creates a "hello.txt" file, and saves the resultant image as a "custom image".
 Here is how it works:
@@ -12,7 +14,14 @@ Here is how it works:
 6. Packer saves the resultant image as a "custom image" that can be provisioned later on as a VSI
 7. Packer tears down the resultant VPC resources used to test the image(Security Group, SSH keys, and VSI). Note: the VPC and subnet will remain, but they will return to their empty beginning state
 
+###
+Pre-requisities
+
+1. Install the [golden-image-landing-zone](https://github.com/acmthinks/golden-image-landing-zone)
+
 # Install
+
+Run the following on your local machine.
 
 ## Clone repo
 
