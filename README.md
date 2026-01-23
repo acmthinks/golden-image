@@ -60,6 +60,9 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 ## Set IBM Cloud variables
 
 Create a and save a file `variables.pkrvars.hcl` with the values from the IBM Cloud account. If you provisioned a landing zone with https://github.com/acmthinks/golden-image-landing-zone grab the values of the output from `terraform apply`
+
+The `ibm_api_key` below refers to the COS service credentials and must be retrieved from the IBM Cloud UI. This is **not** the api key of your IBM Cloud account, rather then COS service credentials API key.
+
 ``` shell
 #Service ID API Key (COS credentials)
 ibm_api_key = "<COS_CREDENTIAL_API_KEY>"
